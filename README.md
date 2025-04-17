@@ -25,7 +25,7 @@
 ### Installation
 
 ```bash
-git clone https://github.com/yourusername/dall-e-text2img.git
+git clone https://github.com/Pdevadiga45/Text-to-Image-Generation.git
 cd dall-e-text2img
 pip install torch>=2.0.0 diffusers>=0.24.0 transformers>=4.36.0 datasets tqdm pillow
 ```
