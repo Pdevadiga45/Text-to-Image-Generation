@@ -1,36 +1,76 @@
-# Text to Image Generation using DALL-E
+# 🎨 DALL·E Text-to-Image Generator
 
-This project uses a DALL-E model from Hugging Face to generate images from text descriptions.
+[![Python Version](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green)](./LICENSE)
 
-## Setup
+> Transform captions into stunning visuals with the ProteusV0.2 diffusion model.
 
-1. Make sure you have Python 3.7+ installed
-2. Install the required dependencies:
+---
+
+## ✨ Features
+
+- **Diffusion Magic**: Leverages `diffusers` & `transformers` for DALL·E–style image synthesis
+- **Dataset Powered**: Processes a subset of COCO Caption 2017 via `datasets`
+- **Auto-Organized**: Timestamped output directories for effortless result tracking
+- **Metadata Logging**: JSON metadata for each run (prompt, filename, status, errors)
+- **GPU Ready**: Seamless PyTorch `.to("cuda")` acceleration
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Python 3.8+
+- (Optional) NVIDIA GPU + CUDA toolkit
+
+### Installation
+
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/yourusername/dall-e-text2img.git
+cd dall-e-text2img
+pip install torch>=2.0.0 diffusers>=0.24.0 transformers>=4.36.0 datasets tqdm pillow
 ```
 
-## Usage
+### Usage
 
-Run the script using:
-```bash
-python text_to_image.py
+1. **Jupyter Notebook**
+   ```bash
+   jupyter notebook Dall-ETexttoImage.ipynb
+   ```
+2. **CLI (script)**
+   ```bash
+   python generate_images.py --model dataautogpt3/ProteusV0.2 --split "val[:100]"
+   ```
+
+---
+
+## 🛠️ Project Structure
+
+```
+dall-e-text2img/
+├── Dall-ETexttoImage.ipynb   # Main notebook
+├── generate_images.py        # CLI wrapper (optional)
+├── requirements.txt          # Pin your versions here
+└── LICENSE                   # MIT License
 ```
 
-The script will:
-1. Prompt you to enter a text description
-2. Generate an image based on your description
-3. Save the generated image in the `output` directory
+## ⚙️ Configuration
 
-## Features
+- Change `base_dir` in `setup_output_directory()` to customize save location
+- Swap out the pretrained model in `initialize_model()` for different styles
+- Tweak `split` parameter in `load_dataset()` to process more or fewer captions
 
-- Supports GPU acceleration if available
-- Automatically creates output directory
-- Error handling for failed generations
-- Uses the ProteusV0.2 model for high-quality image generation
+## 📂 Output
 
-## Notes
+- **Images**: Saved as `image_XXXX_<safe_prompt>.png` under `coco_generated/run_<TIMESTAMP>/`
+- **Metadata**: Detailed `metadata.json` in the same directory
 
-- The first run will download the model weights (several GB)
-- GPU is recommended for faster generation
-- Generated images are saved in PNG format 
+---
+
+## 🤝 Contributing
+
+Your contributions make this project better! Please fork, open issues, and submit PRs ✨
+
+## 📜 License
+
+Released under the MIT License. See [LICENSE](./LICENSE) for details.
+
